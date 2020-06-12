@@ -5,6 +5,10 @@ html, body {
 }
 .container {
     background-color: black;
+    display: block;
+    width: 1000px;
+    height: 700px;
+    justify-content: center;
 }
 canvas {
     background-color: black;
