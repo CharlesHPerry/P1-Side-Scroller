@@ -4,7 +4,7 @@ game.width = 960;
 game.height = 720;
 
 //Map layout and collision logic
-world = function(){
+world = function() {
   var map = {
     cols: 20,
     rows: 15,
@@ -27,7 +27,7 @@ world = function(){
       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     ] 
 
-  }
+  };
   var collisionMap = {
     cols: 20,
     rows: 15,
@@ -49,7 +49,7 @@ world = function(){
       0, 0, 0, 0, 0, 0, 0, 9, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     ] 
-  }
+  };
 }
 world.prototype = {
   constuctor : world,
@@ -90,7 +90,7 @@ world.prototype = {
 }
 //----------Time for some collsion functions
 //collison type based on collison_map values includes all possible collision border combinations
-collider = function() {
+world.collider = function() {
   this.collide = function(value, object, tile_x, tile_y, tile_size) {
     switch(value) {
       case  1: this.collidePlatformTop      (object, tile_y            ); break;
@@ -128,8 +128,8 @@ collider = function() {
     }
   }
 };
-collider.prototype = {
-  constructor : collider,
+world.collider.prototype = {
+  constructor : world.collider,
   collidePlatformBottom:function(object, tile_bottom) {
     if(object.getTop() < tile_bottom && object.getOldTop() >= tile_bottom) {
       object.setTop(tile_bottom);
@@ -166,10 +166,11 @@ Object = function(x, y, color, width, height) {
   this.y = y;
   this.width = width;
   this.height = height;
-  this.color = color.fillStyle("grey");
+  this.color = color;
   this.x_old = x;
   this.y_old = y;
 };
+let object = new Object(this.x, this.y, "grey", 48, 48,);
 //time to handle the different sides of each object
 Object.prototype = {
   constructor : Object,
@@ -274,6 +275,7 @@ gameLoop = function() {
   
     }
     mainChar.render();
+    object.render();
 };
 let gameTick = setInterval(gameLoop, 16)
 window.addEventListener("keydown", controller.keyListener);
