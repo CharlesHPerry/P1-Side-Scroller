@@ -3,7 +3,7 @@ window.addEventListener("load", function(event){
     "use strict";
     // functions from the diffent files
     var keyDown = function(event) {
-        controller.keyDown(event.type, event.key);
+        controller.keyDown(event.type, event.keyCode);
     };
     var resize = function(event) {
         display.resize(document.documentElement.clientWidth - 32, document.documentElement.clientHeight - 32, game.world.height / game.world.width);
@@ -11,7 +11,7 @@ window.addEventListener("load", function(event){
     };
     var render = function() {
         display.drawMap(game.world.map, game.world.columns);
-        display.drawPlayer(game.world.player, game.world.player.color1, game.world.player.color2);
+        display.drawPlayer(game.world.player, game.world.player.color);
         display.render();
     };
     var update = function() {
@@ -31,7 +31,7 @@ window.addEventListener("load", function(event){
         engine.start();
 
     }, {once : true});
-    display.tile_sheet.image.src = "tile_sheet_P1.png";
+    display.tile_sheet.image.src = "final_tile_sheet.png";
     window.addEventListener("keydown", keyDown);
     window.addEventListener("keyup", keyDown);
     window.addEventListener("resize", resize);

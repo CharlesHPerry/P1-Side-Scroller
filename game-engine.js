@@ -8,8 +8,10 @@ const Engine = function(time_step, update, render) {
     this.time = undefined,
     this.time_step = time_step, //30 frames per second
     this.updated = false; // if the update function has been called or not
+
     this.update = update; //update function
-    this,render = render;// render function
+    this.render = render;// render function
+
     this.run = function(time_stamp){// one cycle of the game loop
         this.accumulated_time += time_stamp - this.time;
         this.time = time_stamp;
