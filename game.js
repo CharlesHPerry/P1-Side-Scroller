@@ -55,37 +55,37 @@ Game.World = function(friction = 0.9, gravity = 3) {
 
 Game.World.prototype = {
   constuctor : Game.World,
-  collideWithEntity:function(entity) {//check locations of the corners of each platform
+  collideWithobject:function(object) {//check locations of the corners of each platform
     
     var value, top, right, bottom, left;
     
     //top left corner
     
-    top = Math.floor(entity.getTop() / this.tile_size);
-    left = Math.floor(entity.getLeft() / this.tile_size);
+    top = Math.floor(object.getTop() / this.tile_size);
+    left = Math.floor(object.getLeft() / this.tile_size);
     value = this.collision_map[top * this.columns + left];
-    this.collider.collide(value, entity, left * this.tile_size, top * this.tile_size, this.tile_size);
+    this.collider.collide(value, object, left * this.tile_size, top * this.tile_size, this.tile_size);
     
     //top right corner
     
-    top    = Math.floor(entity.getTop()    / this.tile_size);
-    right  = Math.floor(entity.getRight()  / this.tile_size);
+    top    = Math.floor(object.getTop()    / this.tile_size);
+    right  = Math.floor(object.getRight()  / this.tile_size);
     value  = this.collision_map[top * this.columns + right];
-    this.collider.collide(value, entity, right * this.tile_size, top * this.tile_size, this.tile_size);
+    this.collider.collide(value, object, right * this.tile_size, top * this.tile_size, this.tile_size);
 
     //bottom left corner
 
-    bottom = Math.floor(entity.getBottom() / this.tile_size);
-    left   = Math.floor(entity.getLeft()   / this.tile_size);
+    bottom = Math.floor(object.getBottom() / this.tile_size);
+    left   = Math.floor(object.getLeft()   / this.tile_size);
     value  = this.collision_map[bottom * this.columns + left];
-    this.collider.collide(value, entity, left * this.tile_size, bottom * this.tile_size, this.tile_size);
+    this.collider.collide(value, object, left * this.tile_size, bottom * this.tile_size, this.tile_size);
 
     //bottom right corner
 
-    bottom = Math.floor(entity.getBottom() / this.tile_size);
-    right  = Math.floor(entity.getRight()  / this.tile_size);
+    bottom = Math.floor(object.getBottom() / this.tile_size);
+    right  = Math.floor(object.getRight()  / this.tile_size);
     value  = this.collision_map[bottom * this.columns + right];
-    this.collider.collide(value, entity, right * this.tile_size, bottom * this.tile_size, this.tile_size);
+    this.collider.collide(value, object, right * this.tile_size, bottom * this.tile_size, this.tile_size);
 
   },
   update:function() {
@@ -93,83 +93,83 @@ Game.World.prototype = {
     this.player.update();
     this.player.x_velocity *= this.friction;
     this.player.y_velocity *= this.friction;
-    this.collideWithEntity(this.player);
+    this.collideWithobject(this.player);
   }
 
 };
 //----------Time for some collsion functions
 //collison type based on collison_map values includes all possible collision border combinations
 Game.World.Collider = function() {
-  this.collide = function(value, entity, tile_x, tile_y, tile_size) {
+  this.collide = function(value, object, tile_x, tile_y, tile_size) {
     switch(value) {
-      case  1: this.collidePlatformTop      (entity, tile_y); break;
-      case  2: this.collidePlatformRight    (entity, tile_x + tile_size); break;
-      case  3: if (this.collidePlatformTop  (entity, tile_y)) return;// If there's a collision, we don't need to check for anything else.
-               this.collidePlatformRight    (entity, tile_x + tile_size); break;
-      case  4: this.collidePlatformBottom   (entity, tile_y + tile_size); break;
-      case  5: if (this.collidePlatformTop  (entity, tile_y)) return;
-               this.collidePlatformBottom   (entity, tile_y + tile_size); break;
-      case  6: if (this.collidePlatformRight(entity, tile_x + tile_size)) return;
-               this.collidePlatformBottom   (entity, tile_y + tile_size); break;
-      case  7: if (this.collidePlatformTop  (entity, tile_y)) return;
-               if (this.collidePlatformRight(entity, tile_x + tile_size)) return;
-               this.collidePlatformBottom   (entity, tile_y + tile_size); break;
-      case  8: this.collidePlatformLeft     (entity, tile_x); break;
-      case  9: if (this.collidePlatformTop  (entity, tile_y)) return;
-               this.collidePlatformLeft     (entity, tile_x); break;
-      case 10: if (this.collidePlatformLeft (entity, tile_x)) return;
-               this.collidePlatformRight    (entity, tile_x + tile_size); break;
-      case 11: if (this.collidePlatformTop  (entity, tile_y)) return;
-               if (this.collidePlatformLeft (entity, tile_x)) return;
-               this.collidePlatformRight    (entity, tile_x + tile_size); break;
-      case 12: if (this.collidePlatformLeft (entity, tile_x)) return;
-               this.collidePlatformBottom   (entity, tile_y + tile_size); break;
-      case 13: if (this.collidePlatformTop  (entity, tile_y)) return;
-               if (this.collidePlatformLeft (entity, tile_x)) return;
-               this.collidePlatformBottom   (entity, tile_y + tile_size); break;
-      case 14: if (this.collidePlatformLeft (entity, tile_x)) return;
-               if (this.collidePlatformRight(entity, tile_x)) return;
-               this.collidePlatformBottom   (entity, tile_y + tile_size); break;
-      case 15: if (this.collidePlatformTop  (entity, tile_y)) return;
-               if (this.collidePlatformLeft (entity, tile_x)) return;
-               if (this.collidePlatformRight(entity, tile_x + tile_size)) return;
-               this.collidePlatformBottom   (entity, tile_y + tile_size); break;
+      case  1: this.collidePlatformTop      (object, tile_y); break;
+      case  2: this.collidePlatformRight    (object, tile_x + tile_size); break;
+      case  3: if (this.collidePlatformTop  (object, tile_y)) return;// If there's a collision, we don't need to check for anything else.
+               this.collidePlatformRight    (object, tile_x + tile_size); break;
+      case  4: this.collidePlatformBottom   (object, tile_y + tile_size); break;
+      case  5: if (this.collidePlatformTop  (object, tile_y)) return;
+               this.collidePlatformBottom   (object, tile_y + tile_size); break;
+      case  6: if (this.collidePlatformRight(object, tile_x + tile_size)) return;
+               this.collidePlatformBottom   (object, tile_y + tile_size); break;
+      case  7: if (this.collidePlatformTop  (object, tile_y)) return;
+               if (this.collidePlatformRight(object, tile_x + tile_size)) return;
+               this.collidePlatformBottom   (object, tile_y + tile_size); break;
+      case  8: this.collidePlatformLeft     (object, tile_x); break;
+      case  9: if (this.collidePlatformTop  (object, tile_y)) return;
+               this.collidePlatformLeft     (object, tile_x); break;
+      case 10: if (this.collidePlatformLeft (object, tile_x)) return;
+               this.collidePlatformRight    (object, tile_x + tile_size); break;
+      case 11: if (this.collidePlatformTop  (object, tile_y)) return;
+               if (this.collidePlatformLeft (object, tile_x)) return;
+               this.collidePlatformRight    (object, tile_x + tile_size); break;
+      case 12: if (this.collidePlatformLeft (object, tile_x)) return;
+               this.collidePlatformBottom   (object, tile_y + tile_size); break;
+      case 13: if (this.collidePlatformTop  (object, tile_y)) return;
+               if (this.collidePlatformLeft (object, tile_x)) return;
+               this.collidePlatformBottom   (object, tile_y + tile_size); break;
+      case 14: if (this.collidePlatformLeft (object, tile_x)) return;
+               if (this.collidePlatformRight(object, tile_x)) return;
+               this.collidePlatformBottom   (object, tile_y + tile_size); break;
+      case 15: if (this.collidePlatformTop  (object, tile_y)) return;
+               if (this.collidePlatformLeft (object, tile_x)) return;
+               if (this.collidePlatformRight(object, tile_x + tile_size)) return;
+               this.collidePlatformBottom   (object, tile_y + tile_size); break;
     }
   }
 };
 Game.World.Collider.prototype = {
   constructor : Game.World.Collider,
-  collidePlatformBottom:function(entity, tile_bottom) {
-    if(entity.getTop() < tile_bottom && entity.getOldTop() >= tile_bottom) {
-      entity.setTop(tile_bottom);
-      entity.y_velocity = 0;
+  collidePlatformBottom:function(object, tile_bottom) {
+    if(object.getTop() < tile_bottom && object.getOldTop() >= tile_bottom) {
+      object.setTop(tile_bottom);
+      object.y_velocity = 0;
       return true;
     }return false;
   },
-  collidePlatformLeft:function(entity, tile_left){
-    if(entity.getRight() > tile_left && entity.getOldRight() <= tile_left){
-      entity.setRight(tile_left -0.01);
-      entity.x_velocity = 0;
+  collidePlatformLeft:function(object, tile_left){
+    if(object.getRight() > tile_left && object.getOldRight() <= tile_left){
+      object.setRight(tile_left -0.01);
+      object.x_velocity = 0;
       return true;
     }return false;
   },
-  collidePlatformTop:function(entity, tile_top){
-    if(entity.getBottom() > tile_top && entity.getOldBottom() <= tile_top){
-      entity.setBottom(tile_top - 0.01);
-      entity.y_velocity = 0;
-      entity.jumping = false;
+  collidePlatformTop:function(object, tile_top){
+    if(object.getBottom() > tile_top && object.getOldBottom() <= tile_top){
+      object.setBottom(tile_top - 0.01);
+      object.y_velocity = 0;
+      object.jumping = false;
       return true;
     }return false;
   },
-  collidePlatformRight:function(entity, tile_right){
-    if(entity.getLeft() < tile_right && entity.getOldLeft() >= tile_right){
-      entity.setLeft(tile_right);
-      entity.x_velocity = 0;
+  collidePlatformRight:function(object, tile_right){
+    if(object.getLeft() < tile_right && object.getOldLeft() >= tile_right){
+      object.setLeft(tile_right);
+      object.x_velocity = 0;
       return true;
     }return false;
   }
 };
-Game.World.Entity = function(x, y, width, height) {
+Game.World.Object = function(x, y, width, height) {
   this.height = height;
   this.width  = width;
   this.x      = x;
@@ -178,8 +178,8 @@ Game.World.Entity = function(x, y, width, height) {
   this.y_old  = y;
 };
 
-Game.World.Entity.prototype = {
-  constructor : Game.World.Entity,
+Game.World.Object.prototype = {
+  constructor : Game.World.Object,
 
   getBottom:   function()  { return this.y + this.height;},
   getLeft:     function()  { return this.x;},
@@ -199,7 +199,7 @@ Game.World.Entity.prototype = {
   setOldTop:   function(y) { this.y_old = y;}
 };
 Game.World.Player = function(x, y) {
-  Game.World.Entity.call(this, 100, 100, 45, 45);
+  Game.World.Object.call(this, 100, 100, 45, 45);
   this.color = "red";
   this.jumping = true;
   this.x_velocity = 0;
@@ -221,7 +221,7 @@ Game.World.Player.prototype = {
     this.y += this.velocity_y;
   }
 };
-Entity.assign(Game.World.Player.prototype, Game.World.Entity.prototype);
+Object.assign(Game.World.Player.prototype, Game.World.Object.prototype);
 Game.World.Player.prototype.constructor = Game.World.Player;
 
 const Controller = function() {
@@ -250,12 +250,6 @@ Controller.ButtonPress.prototype = {
     if (this.key_down != key_down) this.active = key_down;
     this.keydown = key_down
   }
-};
-var update = function() {
-  if (controller.left.active) {game.world.player.moveLeft();}
-  if (controller.right.active) {game.world.player.moveRight();}
-  if (controller.up.active) {game.world.player.jump(); controller.up.active = false;}
-  game.update();
 };
 var controller = new Controller();
 //     left:false,
@@ -338,9 +332,9 @@ var controller = new Controller();
 // };
 // let platform = new Object(this.x, this.y, "grey", 48, 48,);
 //time to handle the different sides of each platform
-// let platform = new Entity(48, 648, "grey", 48, 48);
+// let platform = new object(48, 648, "grey", 48, 48);
 
-// function Entity(x, y, color, width, height) {
+// function object(x, y, color, width, height) {
 //     this.x = x;
 //     this.x_velocity = 0;
 //     this.y = y;
@@ -356,7 +350,7 @@ var controller = new Controller();
 //     }
 // };
 
-// let mainChar = new Entity(432, 0, "red", 48, 48);
+// let mainChar = new object(432, 0, "red", 48, 48);
 // mainChar.x_velocity = 0;
 // mainChar.y_velocity = 0;
 // let game = document.getElementById("game");
