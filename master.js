@@ -20,6 +20,7 @@ window.addEventListener("load", function(event){
         if (controller.up.active) {game.world.player.jump(); controller.up.active = false;}
         game.update();
     };
+    //var background_display = document.getElementById("game");
     var display = new Display(document.querySelector("canvas"))
     var game =  new Game();
     var engine = new Engine(1000/30, render, update);
@@ -31,7 +32,7 @@ window.addEventListener("load", function(event){
         engine.start();
 
     }, {once : true});
-    display.tile_sheet.image.src = "final_tile_sheet.png";
+    display.tile_sheet.image.src = "final_final_tile_sheet.png";
     window.addEventListener("keydown", keyDown);
     window.addEventListener("keyup", keyDown);
     window.addEventListener("resize", resize);

@@ -16,38 +16,38 @@ Game.World = function(friction = 0.9, gravity = 3) {
   this.rows = 15;
   this.tile_size = 48;
   this.map = [
-      9, 9, 1, 9, 9, 9, 9, 9, 9, 1, 9, 9, 9, 9, 9, 9, 1, 9, 9, 9,
-      9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
-      9, 9, 1, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
-      9, 9, 1, 9, 9, 1, 9, 9, 9, 9, 9, 1, 9, 9, 9, 9, 9, 1, 9, 9,
-      9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
-      9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
-      9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
-      9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
-      9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+      2, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0,
+      2, 5, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0,
+      2, 1, 1, 9, 9, 9, 1, 1, 9, 9, 1, 9, 9, 1, 9, 9, 9, 9, 9, 0,
+      2, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0,
+      2, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0,
+      2, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 1, 9, 9, 9, 9, 0,
+      2, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0,
+      2, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0,
+      2, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 1, 9, 9, 9, 0,
+      2, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0,
+      2, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0,
+      2, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 1, 9, 9, 9, 9, 0,
+      2, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0,
+      2, 9, 9, 9, 9, 9, 9, 0, 1, 2, 9, 9, 9, 9, 9, 3, 9, 9, 9, 0,
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0];
 
   this.collision_map = [
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 9, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+      2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+      2, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+      2, 5, 3, 0, 0, 0, 5, 3, 0, 0, 15, 0, 0, 15, 0, 0, 0, 0, 0, 8,
+      2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+      2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+      2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 8,
+      2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+      2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+      2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 8,
+      2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+      2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+      2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 8,
+      2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+      2, 0, 0, 0, 0, 0, 0, 9, 1, 3, 0, 0, 0, 0, 0, 17, 0, 0, 0, 8,
+      1, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
   this.height = this.rows * this.tile_size;
   this.width = this.columns * this.tile_size;
@@ -134,6 +134,10 @@ Game.World.Collider = function() {
                if (this.collidePlatformLeft (object, tile_x)) return;
                if (this.collidePlatformRight(object, tile_x + tile_size)) return;
                this.collidePlatformBottom   (object, tile_y + tile_size); break;
+      case 16: this.collideLoveInterest     (object, tile_x + tile_size); break;
+      case 17: if (this.collideEnemyTop     (object, tile_y)) return;
+               if (this.collideEnemyRight   (object, tile_x + tile_size)) return;
+               this.collideEnemyLeft        (object, tile_x); break; 
     }
   }
 };
@@ -165,6 +169,40 @@ Game.World.Collider.prototype = {
     if(object.getLeft() < tile_right && object.getOldLeft() >= tile_right){
       object.setLeft(tile_right);
       object.x_velocity = 0;
+      return true;
+    }return false;
+  },
+  collideLoveInterest:function(object, tile_right){
+    if(object.getLeft() < tile_right && object.getOldLeft() >= tile_right){
+      object.setLeft(tile_right);
+      object.x_velocity = 0;
+      object.x += 1;
+      alert("Horray, you did the thing!");
+      return true;
+    }return false;
+  },
+  collideEnemyTop:function(object, tile_top){
+    if(object.getBottom() < tile_top && object.getOldBottom() <= tile_top){
+      object.setBottom(tile_top - 0.01);
+      object.x_velocity = 0;
+      object.x += 2
+      alert("Whoops, you did a bad thing, restart.");
+      return true;
+    }return false;
+  },
+  collideEnemyRight:function(object, tile_right){
+    if(object.getLeft() < tile_right && object.getOldLeft() >= tile_right){
+      object.setLeft(tile_right + 2);
+      object.x_velocity = 0;
+      alert("Whoops, you did a bad thing, restart.");
+      return true;
+    }return false;
+  },
+  collideEnemyLeft:function(object, tile_left){
+    if(object.getRight() > tile_left && object.getOldRight() >= tile_left){
+      object.setRight(tile_left - 2);
+      object.x_velocity = 0;
+      alert("Whoops, you did a bad thing, restart.")
       return true;
     }return false;
   }
@@ -199,7 +237,7 @@ Game.World.Object.prototype = {
   setOldTop:   function(y) { this.y_old = y;}
 };
 Game.World.Player = function(x, y) {
-  Game.World.Object.call(this, 400, 100, 45, 45);
+  Game.World.Object.call(this, 51, 625, 45, 45);
   this.color = "red";
   this.jumping = true;
   this.x_velocity = 0;
@@ -213,6 +251,11 @@ Game.World.Player.prototype = {
       this.y_velocity -= 50;
     }
   },
+  game_win:function(){
+    if(game.world.player.x > 96 && game.world.player.y > 46) {
+      console.log("Congrats You did the thing!")
+    }
+  },
   moveLeft:function()  { this.x_velocity -= 0.5; console.log("move left"); },
   moveRight:function() { this.x_velocity += 0.5; console.log("move right");},
   update:function() {
@@ -222,8 +265,6 @@ Game.World.Player.prototype = {
     this.y += this.y_velocity;
   }
 };
-Object.assign(Game.World.Player.prototype, Game.World.Object.prototype);
-Game.World.Player.prototype.constructor = Game.World.Player;
 
 const Controller = function() {
   this.left = new Controller.ButtonPress();
@@ -240,7 +281,7 @@ const Controller = function() {
   };
 };
 Controller.prototype = {
-  constuctor : Controller
+  constructor : Controller
 };
 Controller.ButtonPress = function() {
   this.active = this.key_state = false;
@@ -253,6 +294,9 @@ Controller.ButtonPress.prototype = {
   }
 };
 var controller = new Controller();
+
+Object.assign(Game.World.Player.prototype, Game.World.Object.prototype);
+Game.World.Player.prototype.constructor = Game.World.Player;
 //     left:false,
 //     right:false,
 //     up:false,

@@ -16,7 +16,6 @@ const Display = function(canvas) {
     };
     this.drawPlayer = function(rectangle, color) {
       this.buffer.fillStyle = color;
-      this.buffer.clearRect(Math.round(rectangle.x), Math.round(rectangle.y), rectangle.width, rectangle.height);
       this.buffer.fillRect(Math.round(rectangle.x), Math.round(rectangle.y), rectangle.width, rectangle.height);
     };
     this.resize = function(width, height, height_width_ratio) {
