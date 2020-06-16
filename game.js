@@ -18,7 +18,7 @@ Game.World = function(friction = 0.9, gravity = 3) {
   this.map = [
       9, 9, 1, 9, 9, 9, 9, 9, 9, 1, 9, 9, 9, 9, 9, 9, 1, 9, 9, 9,
       9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
-      9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
+      9, 9, 1, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
       9, 9, 1, 9, 9, 1, 9, 9, 9, 9, 9, 1, 9, 9, 9, 9, 9, 1, 9, 9,
       9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
       9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
@@ -207,18 +207,19 @@ Game.World.Player = function(x, y) {
 };
 Game.World.Player.prototype = {
   jump:function() {
+    console.log("jump");
     if (!this.jumping) {
       this.jumping = true;
-      this.velocity_y -= 50;
+      this.y_velocity -= 50;
     }
   },
-  moveLeft:function()  { this.velocity_x -= 0.5; },
-  moveRight:function() { this.velocity_x += 0.5; },
+  moveLeft:function()  { this.x_velocity -= 0.5; console.log("move left"); },
+  moveRight:function() { this.x_velocity += 0.5; console.log("move right");},
   update:function() {
     this.x_old = this.x;
     this.y_old = this.y;
-    this.x += this.velocity_x;
-    this.y += this.velocity_y;
+    this.x += this.x_velocity;
+    this.y += this.y_velocity;
   }
 };
 Object.assign(Game.World.Player.prototype, Game.World.Object.prototype);
@@ -248,7 +249,7 @@ Controller.ButtonPress.prototype = {
   constructor : Controller.ButtonPress,
   getInput : function(key_down) {
     if (this.key_down != key_down) this.active = key_down;
-    this.keydown = key_down
+    this.keyDown = key_down
   }
 };
 var controller = new Controller();

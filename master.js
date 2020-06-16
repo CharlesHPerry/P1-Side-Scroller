@@ -24,7 +24,7 @@ window.addEventListener("load", function(event){
     var game =  new Game();
     var engine = new Engine(1000/30, render, update);
     // Initialize the game
-    display.buffer.canvas.heigth = game.world.height;
+    display.buffer.canvas.height = game.world.height;
     display.buffer.canvas.width = game.world.width;
     display.tile_sheet.image.addEventListener("load", function(event) {
         resize();
