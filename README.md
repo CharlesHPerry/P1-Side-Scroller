@@ -16,7 +16,7 @@ Side scrolling platformer where you are a cute little ghost person searching for
 - A second area of improvement for the game is the visual representaion of the Win and Lose conditions, currently they are meerly window alerts that inform the user if they have reached the goal or if the player has run into an enemy. This is compounded by the fact that if you run into either of the messages it fires the collision detection multiple times meaning that you need to reload the browser before you can continue moving. Most likely I will just have the player object sent back to the starting position so that they can restart without having to interupt gameplay. On acheiving the goal of the game I will most likely impliment a congratulatory visual that will also include a restart button.
 
 ## Photos of Game Play
-![gameplay image] (GAMEPLAY_IMG.png)
-![gameplay image2] (gameplay_img2.png)
+![gameplay image](GAMEPLAY_IMG.png)
+![gameplay image2](gameplay_img2.png)
 
 - Overall, currently the game needs work, but it doesnt require much in the way of new logic to be able to be considered a decent and fun game to play, after I complete some updates to the win states and I have better sprite sheet I can overhaul the graphics of the game and make it look special.
