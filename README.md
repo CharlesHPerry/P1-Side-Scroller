@@ -20,3 +20,6 @@ Side scrolling platformer where you are a cute little ghost person searching for
 ![gameplay image2](gameplay_img2.png)
 
 - Overall, currently the game needs work, but it doesnt require much in the way of new logic to be able to be considered a decent and fun game to play, after I complete some updates to the win states and I have better sprite sheet I can overhaul the graphics of the game and make it look special.
+## Credits
+- I have to give a special thank you to Sofia Debiase for the art of the game, and for future creation of sprites that can allow for an animated player and enemies.
+- I also found this video helpful for giving ideas about how you can have smoother character movement https://www.youtube.com/watch?v=8uIt9a2XBrw
