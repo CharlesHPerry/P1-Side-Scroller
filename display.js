@@ -2,10 +2,10 @@ const Display = function(canvas) {
     this.buffer  = document.createElement("canvas").getContext("2d"),
     this.context = canvas.getContext("2d");  
     this.tile_sheet = new Display.TileSheet(48, 3);
-    /* This function draws the map to the buffer. */
+  
     this.drawMap = function(map, columns) {
       for (let index = map.length - 1; index > -1; -- index) {
-        let value = map[index]; // No longer subtracting 1. The values in my tile map have been shifted down by 1.
+        let value = map[index];
         let source_x = (value % this.tile_sheet.columns) * this.tile_sheet.tile_size;
         let source_y = Math.floor(value / this.tile_sheet.columns) * this.tile_sheet.tile_size;
         let destination_x = (index % columns) * this.tile_sheet.tile_size;

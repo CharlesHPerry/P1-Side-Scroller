@@ -1,31 +1,26 @@
-// game-engine.js is responsible for updating the game basically an over complicated set interval.
-//but it means the game will run at a constant speed and is better for different cpu capabilites
-//https://gameprogrammingpatterns.com/game-loop.html
+
 
 const Engine = function(time_step, update, render) {
     this.accumulated_time = 0;
     this.animation_frame_request = undefined,
     this.time = undefined,
-    this.time_step = time_step, //30 frames per second
-    this.updated = false; // if the update function has been called or not
+    this.time_step = time_step,
+    this.updated = false;
 
-    this.update = update; //update function
-    this.render = render;// render function
+    this.update = update; 
+    this.render = render;
 
-    this.run = function(time_stamp){// one cycle of the game loop
+    this.run = function(time_stamp){
         this.accumulated_time += time_stamp - this.time;
         this.time = time_stamp;
-        //if the device is slow we need to make sure no more than a few frames pass before the next update else the Cpu may overload
         if (this.accumulated_time >= this.time_step * 3) {
             this.accumulated_time = this.time_step;
         }
     
-    //must wait for window to be ready to draw and requestAnimationFrame
-    //so check to see that enough time has passed
         while(this.accumulated_time >= this.time_step) {
             this.accumulated_time -= this.time_step;
             this.update(time_stamp);
-            this.updated = true; // allows for game to draw again
+            this.updated = true;
         }
         if (this.updated) {
             this.updated = false;

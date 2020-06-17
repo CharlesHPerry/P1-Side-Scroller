@@ -55,32 +55,32 @@ Game.World = function(friction = 0.9, gravity = 3) {
 
 Game.World.prototype = {
   constuctor : Game.World,
-  collideWithobject:function(object) {//check locations of the corners of each platform
+  collideWithobject:function(object) {
     
     var value, top, right, bottom, left;
     
-    //top left corner
+  
     
     top = Math.floor(object.getTop() / this.tile_size);
     left = Math.floor(object.getLeft() / this.tile_size);
     value = this.collision_map[top * this.columns + left];
     this.collider.collide(value, object, left * this.tile_size, top * this.tile_size, this.tile_size);
     
-    //top right corner
+  
     
     top    = Math.floor(object.getTop()    / this.tile_size);
     right  = Math.floor(object.getRight()  / this.tile_size);
     value  = this.collision_map[top * this.columns + right];
     this.collider.collide(value, object, right * this.tile_size, top * this.tile_size, this.tile_size);
 
-    //bottom left corner
+  
 
     bottom = Math.floor(object.getBottom() / this.tile_size);
     left   = Math.floor(object.getLeft()   / this.tile_size);
     value  = this.collision_map[bottom * this.columns + left];
     this.collider.collide(value, object, left * this.tile_size, bottom * this.tile_size, this.tile_size);
 
-    //bottom right corner
+  
 
     bottom = Math.floor(object.getBottom() / this.tile_size);
     right  = Math.floor(object.getRight()  / this.tile_size);
@@ -97,14 +97,13 @@ Game.World.prototype = {
   }
 
 };
-//----------Time for some collsion functions
-//collison type based on collison_map values includes all possible collision border combinations
+
 Game.World.Collider = function() {
   this.collide = function(value, object, tile_x, tile_y, tile_size) {
     switch(value) {
       case  1: this.collidePlatformTop      (object, tile_y); break;
       case  2: this.collidePlatformRight    (object, tile_x + tile_size); break;
-      case  3: if (this.collidePlatformTop  (object, tile_y)) return;// If there's a collision, we don't need to check for anything else.
+      case  3: if (this.collidePlatformTop  (object, tile_y)) return;
                this.collidePlatformRight    (object, tile_x + tile_size); break;
       case  4: this.collidePlatformBottom   (object, tile_y + tile_size); break;
       case  5: if (this.collidePlatformTop  (object, tile_y)) return;
@@ -297,108 +296,3 @@ var controller = new Controller();
 
 Object.assign(Game.World.Player.prototype, Game.World.Object.prototype);
 Game.World.Player.prototype.constructor = Game.World.Player;
-//     left:false,
-//     right:false,
-//     up:false,
-//     keyListener:function(event) {
-  
-//       var key_state = (event.type == "keydown")?true:false;
-  
-//       switch(event.key) {
-  
-//         case "a":// left key
-//           controller.left = key_state;
-//         break;
-//         case "w":// up key
-//           controller.up = key_state;
-//         break;
-//         case "d":// right key
-//           controller.right = key_state;
-//         break;
-//       }
-//     }
-// };
-// gameLoop = function() {
-//     ctx.clearRect(0, 0, game.width, game.height);
-//     if (controller.up && mainChar.jumping == false) {
-  
-//         mainChar.y_velocity -= 40;
-//         mainChar.jumping = true;
-//     }
-//     if (controller.left) {
-  
-//         mainChar.x_velocity -= 0.5;
-//     }
-//     if (controller.right) {
-  
-//       mainChar.x_velocity += 0.5;
-  
-//     }
-//     mainChar.y_velocity += 1.5;// gravity
-//     mainChar.x += mainChar.x_velocity;
-//     mainChar.y += mainChar.y_velocity;
-//     mainChar.x_velocity *= 0.9;// makes motion seem more real
-//     mainChar.y_velocity *= 0.9;// 
-  
-//     // if mainChar is falling below floor line
-//     if (mainChar.y > 720 - 24 - 48) {
-  
-//       mainChar.jumping = false;
-//       mainChar.y = 720 - 24 - 48;
-//       mainChar.y_velocity = 0;
-  
-//     }
-//     // if mainChar is going off the left of the screen
-//     if (mainChar.x < -48) {  
-//         mainChar.x = 960;
-//     } else if (mainChar.x > 960) {// if mainChar goes past right boundary
-  
-//       mainChar.x = -48;
-  
-//     }
-//     mainChar.render();
-//     platform.render();
-//     world1.collide();
-// };
-// let gameTick = setInterval(gameLoop, 16)
-// window.addEventListener("keydown", controller.keyListener);
-// window.addEventListener("keyup", controller.keyListener);
-// window.requestAnimationFrame(gameLoop);
-// let world1 = new world();
-
-// Object = function(x, y, color, width, height) {
-//   this.x = x;
-//   this.y = y;
-//   this.width = width;
-//   this.height = height;
-//   this.color = color;
-//   this.x_old = x;
-//   this.y_old = y;
-// };
-// let platform = new Object(this.x, this.y, "grey", 48, 48,);
-//time to handle the different sides of each platform
-// let platform = new object(48, 648, "grey", 48, 48);
-
-// function object(x, y, color, width, height) {
-//     this.x = x;
-//     this.x_velocity = 0;
-//     this.y = y;
-//     this.y_velocity = 0;
-//     this.jumping = false;
-//     this.color = color;
-//     this.width = width;
-//     this.height = height;
-//     this.alive = true;
-//     this.render = function(){
-//         ctx.fillStyle = this.color
-//         ctx.fillRect(this.x, this.y, this.width, this.height)
-//     }
-// };
-
-// let mainChar = new object(432, 0, "red", 48, 48);
-// mainChar.x_velocity = 0;
-// mainChar.y_velocity = 0;
-// let game = document.getElementById("game");
-// let ctx = game.getContext("2d");
-// game.width = 960;
-// game.height = 720;
