@@ -8,7 +8,7 @@ Side scrolling platformer where you are a cute little ghost person searching for
 - have the enemies move back and forth
 - impliment "spike traps" that if the player touches it will end the game too
 - impliment a key that needs to be collected to be able to unlock a cage that the "Love Intrest" is in so you can win.
-![wire frame drawing] (IMG_5435.JPG)
+![wire frame drawing](IMG_5435.JPG)
 
 ## Current State of game
 -As it stands the game has completed the main goals of the game, however the game still has a while to go before it is a enjoyable game to play, there is a substantial graphical glitch that is a result of the way that I have tried to go about implimenting the background image of the game. If I were to instead of trying to use transparent tiles to fill out the tile_map switch them out for tiles with custom designs on them to create a interesting world enviroment. The reason this behind this is that tile objects and the player object are drawing onto the canvas, but nowhere in my code do I have a function that can specifically target the player objects past drawings and remove them. However, the player object does not draw over any other objects and so the trail of past player drawings is not noticable.
