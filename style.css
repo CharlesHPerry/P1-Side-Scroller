@@ -18,3 +18,7 @@ canvas {
     background-image: url("backgroundimg_P1.png");
     width: 100%;
 }
+
+.game_text {
+  color: white;
+}

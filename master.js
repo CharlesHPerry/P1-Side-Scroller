@@ -30,7 +30,7 @@ window.addEventListener("load", function(event){
         engine.start();
 
     }, {once : true});
-    display.tile_sheet.image.src = "final_final_tile_sheet.png";
+    display.tile_sheet.image.src = "tile_sheet.png";
     window.addEventListener("keydown", keyDown);
     window.addEventListener("keyup", keyDown);
     window.addEventListener("resize", resize);

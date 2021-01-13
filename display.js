@@ -1,7 +1,7 @@
 const Display = function(canvas) {
     this.buffer  = document.createElement("canvas").getContext("2d"),
     this.context = canvas.getContext("2d");  
-    this.tile_sheet = new Display.TileSheet(48, 3);
+    this.tile_sheet = new Display.TileSheet(48, 4);
   
     this.drawMap = function(map, columns) {
       for (let index = map.length - 1; index > -1; -- index) {
